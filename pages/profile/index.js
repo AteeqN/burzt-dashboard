@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
@@ -6,7 +6,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import Middlewar from "../_middleware.ts";
 
 function Profile({ data }) {
-  console.log(data);
+  const [subscription, setEmptySubscription] = useState("");
+  // setSubscription(data.subscription_status);
+  useEffect(() => {
+    if (data.subscription_status.length === 0) {
+      console.log("subscripiton is empty now");
+      setEmptySubscription("Not Active");
+      // setSubscription("Subscription is not active yet");
+    }
+  }, []);
+
+  console.log("subs", subscription);
 
   return (
     <>
@@ -20,6 +30,11 @@ function Profile({ data }) {
             <div className="col-12">
               <div className="col-8">
                 <h1> Hello {data.name}</h1>
+                <h1>
+                  {" "}
+                  Subscription Status:{" "}
+                  <span className="text-primary">{subscription}</span>
+                </h1>
               </div>
               <div className="col-4">
                 <Image
@@ -42,7 +57,7 @@ function Profile({ data }) {
 export async function getServerSideProps(context) {
   const { req, res } = context;
   const { cookies } = req;
-  console.log(cookies);
+  // console.log(cookies);
   const token = cookies.token;
   var url = process.env.API_BASE_URL + "user-profile";
   const resp = await fetch(url, {
