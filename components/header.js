@@ -4,23 +4,29 @@ import Cookies from "js-cookie";
 function Header() {
   const [flag, setFlag] = useState(false);
 
-  // useEffect(() => {
-  //   const token = Cookies.get("token");
-  //   if (!token) {
-  //     setFlag(false);
-  //   }
-  //   setFlag(true);
-  // }, []);
+  useEffect(() => {
+    const token = Cookies.get("token");
+    // console.log(typeof token);
+    console.log(typeof token);
+    if (token) {
+      setFlag(true);
+    }
+    // if ((token === undefined) | (token === null)) {
+    //   setFlag(false);
+    // }
+    // setFlag(true);
+  }, []);
 
-  // const LogOut = () => {
-  //   // const token = Cookies.get("token");
-  //   Cookies.remove("token");
-  //   setFlag(false);
-  //   // if (!token) {
-  //   //   Router.push("/");
-  //   // }
-  //   // useEffect(() => setToken(), []);
-  // };
+  const LogOut = () => {
+    // const token = Cookies.get("token");
+    Cookies.remove("token");
+    setFlag(false);
+    window.location.reload();
+    // if (!token) {
+    //   Router.push("/");
+    // }
+    // useEffect(() => setToken(), []);
+  };
 
   return (
     <div className="container">
@@ -31,28 +37,35 @@ function Header() {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
+          <a className="nav-link" aria-current="page" href="/profile">
+            Profile
+          </a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="/contact">
             Contact Us
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
+          <a className="nav-link" href="/about">
             About Us
           </a>
         </li>
         <li className="nav-item">
-          {/* {flag === "false" ? (
+          {flag === true ? (
             <>
-              <a className="nav-link">Login</a>
+              <form onSubmit={LogOut}>
+                <button type="submit">
+                  <a className="nav-link">Log Out</a>
+                </button>
+              </form>
             </>
           ) : (
             <>
-              <a className="nav-link" onClick={LogOut}>
-                Log Out
-              </a>
+              <a className="nav-link"></a>
             </>
-          )} */}
-          <a className="nav-link">Log Out</a>
+          )}
+          {/* <a className="nav-link">Log IN</a> */}
         </li>
       </ul>
     </div>
