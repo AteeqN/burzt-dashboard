@@ -33,22 +33,22 @@ function Header() {
     <div className="container">
       <ul className="nav justify-content-center">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/">
+          <Link className="nav-link active" aria-current="page" href="/">
             Home
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" aria-current="page" to="/profile">
+          <Link className="nav-link" aria-current="page" href="/profile">
             Profile
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/contact">
+          <Link className="nav-link" href="/contact">
             Contact Us
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/about">
+          <Link className="nav-link" href="/about">
             About Us
           </Link>
         </li>
@@ -57,7 +57,7 @@ function Header() {
             <>
               <form onSubmit={LogOut}>
                 <button type="submit">
-                  <Link to="#" className="nav-link">
+                  <Link href="#" className="nav-link">
                     Log Out
                   </Link>
                 </button>
@@ -65,7 +65,7 @@ function Header() {
             </>
           ) : (
             <>
-              <Link to="#" className="nav-link"></Link>
+              <Link href="#" className="nav-link"></Link>
             </>
           )}
           {/* <a className="nav-link">Log IN</a> */}

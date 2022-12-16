@@ -65,13 +65,13 @@ function HomePage({ data }) {
         </Head>
         <main className={styles.main}>
           <h1 className={styles.title}>
-            Welcome to <a href="#">Burzt Dashboard!</a>
+            Welcome to <Link href="#">Burzt Dashboard!</Link>
             {/* <h1>{process.env.API_BASE_URL}</h1> */}
           </h1>
           {!token ? (
             <div className="container text-center">
               <Link
-                to="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
+                href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
                 className={styles.button}
               >
                 <svg
