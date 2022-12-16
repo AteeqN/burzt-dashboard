@@ -1,3 +1,10 @@
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 export default () => {
-  return <h1>About Page</h1>;
+  return (
+    <div className="container">
+      <h1>About Page</h1>
+    </div>
+  );
 };

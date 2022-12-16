@@ -1,73 +1,32 @@
 import Head from "next/head";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
-// import Layout from "../components/layout";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { redirect } from "next/dist/server/api-utils";
 
-function HomePage() {
+function HomePage({ data }) {
   const [token, setToken] = useState();
-  useEffect(() => setToken(Cookies.get("token")), []);
+  const [priceID, setPriceID] = useState();
 
-  // const subscriptionCreate = async (event) => {
-  //   event.preventDefault();
-  //   // console.log("click function working");
-  //   try {
-  //     const price_id = process.env.PRICE_ID;
-
-  //     const apiUrl = process.env.API_URL;
-
-  //     // const { data, errors } = await fetch(apiUrl + "create-checkout-session", {
-  //     const data = await fetch(apiUrl + "create-checkout-session", {
-  //       body: JSON.stringify({
-  //         price_id: price_id,
-  //       }),
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         Accept: "application/json",
-  //         "Content-type": "application/json",
-  //       },
-  //       // "Access-Control-Allow-Origin": "*",
-  //       method: "POST",
-  //     });
-
-  //     // console.log(data.ok);
-
-  //     // if (errors || !data) {
-  //     //   // console.log(data);
-  //     //   console.log(data);
-  //     //   return { notFound: data };
-  //     // }
-
-  //     if (data.status === 200) {
-  //       console.log(data);
-  //       // window.location.replace(data.url);
-  //     }
-  //   } catch (errors) {
-  //     // if (err) {
-  //     // }
-  //     console.log(errors);
-
-  //     // return { notFound: true };
-  //   }
-  // };
+  useEffect(() => {
+    setToken(Cookies.get("token"));
+  }, []);
 
   // Handles the submit event on form submit.
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // console.log(priceID);
     const apiUrl = process.env.API_URL;
 
     const data = {
-      price_id: process.env.PRICE_ID,
+      price_id: priceID,
     };
 
     const JSONdata = JSON.stringify(data);
 
     const endpoint = `${apiUrl}create-checkout-session`;
-    console.log(endpoint);
 
     const options = {
       method: "POST",
@@ -80,7 +39,7 @@ function HomePage() {
 
     const response = await fetch(endpoint, options);
     const result = await response.json();
-    // console.log(response.status);
+    console.log(result);
     if (response.status == 200) {
       // console.log(result);
       window.location.replace(result.url);
@@ -111,7 +70,7 @@ function HomePage() {
           {!token ? (
             <div className="container text-center">
               <a
-                href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2F2b12-206-84-188-37.in.ngrok.io%2Fslack%2Foauth_redirect&client_id=3608320528308.4328768473665"
+                href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
                 className={styles.button}
               >
                 <svg
@@ -145,87 +104,51 @@ function HomePage() {
                 <div className="row mb-3 text-center">
                   <div className="col-md-8 offset-md-2">
                     <div className="row">
-                      <div className="col">
-                        <div className="card mb-4 rounded-3 shadow-sm">
-                          <div className="card-header py-3">
-                            <h4 className="my-0 fw-normal">Basic</h4>
+                      {data.data.length > 0 ? (
+                        data.data.map((pck, index) => (
+                          <div className="col" key={index}>
+                            <form method="POST" onSubmit={handleSubmit}>
+                              <div className="card mb-4 rounded-3 shadow-sm">
+                                <div className="card-header py-3">
+                                  <h4 className="my-0 fw-normal">
+                                    {pck.title}
+                                  </h4>
+                                </div>
+                                <div className="card-body">
+                                  <h1 className="card-title pricing-card-title">
+                                    <small className="text-muted fw-light">
+                                      &#x20B9;{pck.amount}/mo
+                                    </small>
+                                  </h1>
+                                  <ul className="list-unstyled mt-3 mb-4">
+                                    <li>{pck.description}</li>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                  </ul>
+                                  <button
+                                    type="submit"
+                                    className="w-100 btn btn-lg btn-outline-primary"
+                                    onClick={() => {
+                                      setPriceID(pck.price_id);
+                                    }}
+                                  >
+                                    Get started
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
                           </div>
-                          <div className="card-body">
-                            <h1 className="card-title pricing-card-title">
-                              $5
-                              <small className="text-muted fw-light">/mo</small>
-                            </h1>
-                            <ul className="list-unstyled mt-3 mb-4">
-                              <li>10 users included</li>
-                              <li>2 GB of storage</li>
-                              <li>Email support</li>
-                              <li>Help center access</li>
-                            </ul>
-                            <button
-                              type="button"
-                              className="w-100 btn btn-lg btn-outline-primary"
-                              onClick={handleSubmit}
-                            >
-                              Get started
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="col">
-                        <div className="card mb-4 rounded-3 shadow-sm">
-                          <div className="card-header py-3">
-                            <h4 className="my-0 fw-normal">Pro</h4>
-                          </div>
-                          <div className="card-body">
-                            <h1 className="card-title pricing-card-title">
-                              $15
-                              <small className="text-muted fw-light">/mo</small>
-                            </h1>
-                            <ul className="list-unstyled mt-3 mb-4">
-                              <li>20 users included</li>
-                              <li>10 GB of storage</li>
-                              <li>Priority email support</li>
-                              <li>Help center access</li>
-                            </ul>
-                            <button
-                              type="button"
-                              className="w-100 btn btn-lg btn-primary"
-                              onClick={handleSubmit}
-                            >
-                              Get started
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+                        ))
+                      ) : (
+                        <div style={{ color: "red" }}> Record not found </div>
+                      )}
                     </div>
                   </div>
-                </div>
-                <div className="col">
-                  {/* <div className="col">
-                  <div className="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div className="card-header py-3 text-white bg-primary border-primary">
-                      <h4 className="my-0 fw-normal">Enterprise</h4>
-                    </div>
-                    <div className="card-body">
-                      <h1 className="card-title pricing-card-title">
-                        $29<small className="text-muted fw-light">/mo</small>
-                      </h1>
-                      <ul className="list-unstyled mt-3 mb-4">
-                        <li>30 users included</li>
-                        <li>15 GB of storage</li>
-                        <li>Phone and email support</li>
-                        <li>Help center access</li>
-                      </ul>
-                      <button
-                        type="button"
-                        className="w-100 btn btn-lg btn-primary"
-                      >
-                        Contact us
-                      </button>
-                    </div>
-                  </div>
-                </div> */}
                 </div>
               </div>
             </>
@@ -234,6 +157,32 @@ function HomePage() {
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { req, res } = context;
+  const { cookies } = req;
+
+  const token = cookies.token;
+  const apiUrl = process.env.API_URL;
+
+  const endpoint = `${apiUrl}packages`;
+  // console.log(endpoint);
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await fetch(endpoint, options);
+  const result = await response.json();
+  // console.log(result);
+  return {
+    props: { data: result },
+  };
 }
 
 export default HomePage;

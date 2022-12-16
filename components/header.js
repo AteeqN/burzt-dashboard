@@ -7,7 +7,7 @@ function Header() {
   useEffect(() => {
     const token = Cookies.get("token");
     // console.log(typeof token);
-    console.log(typeof token);
+    // console.log(typeof token);
     if (token) {
       setFlag(true);
     }

@@ -7,16 +7,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Profile({ data }) {
   const [subscription, setEmptySubscription] = useState("");
-  // setSubscription(data.subscription_status);
+  // setEmptySubscription(data.subscription_status);
   useEffect(() => {
     if (data.subscription_status.length === 0) {
       console.log("subscripiton is empty now");
       setEmptySubscription("Not Active");
       // setSubscription("Subscription is not active yet");
+    } else if (data.subscription_status.length > 0) {
+      if (data.subscription_status === "active") {
+        setEmptySubscription("Active");
+      } else if (data.subscription_status === "canceled") {
+        setEmptySubscription("Cancel");
+      }
     }
   }, []);
 
-  console.log("subs", subscription);
+  // console.log("subs", data);
 
   return (
     <>

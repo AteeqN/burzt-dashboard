@@ -10,8 +10,6 @@ const nextConfig = {
   },
   env: {
     API_URL: process.env.API_BASE_URL,
-    PRICE_ID: process.env.PRICE_ID,
-    CS_ID: process.env.CHECKOUT_SESSION_ID,
   },
 };
 
