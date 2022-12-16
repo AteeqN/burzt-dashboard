@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Header() {
   const [flag, setFlag] = useState(false);
@@ -56,10 +57,10 @@ function Header() {
           {flag === true ? (
             <>
               <form onSubmit={LogOut}>
-                <button type="submit">
-                  <Link href="#" className="nav-link">
-                    Log Out
-                  </Link>
+                <button type="submit" className="btn btn-primary mt-1">
+                  {/* <Link href="#" className="nav-link"> */}
+                  Log Out
+                  {/* </Link> */}
                 </button>
               </form>
             </>
