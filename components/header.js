@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import Cookies from "js-cookie";
 
 function Header() {
@@ -32,37 +33,39 @@ function Header() {
     <div className="container">
       <ul className="nav justify-content-center">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/">
+          <Link className="nav-link active" aria-current="page" to="/">
             Home
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" aria-current="page" href="/profile">
+          <Link className="nav-link" aria-current="page" to="/profile">
             Profile
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/contact">
+          <Link className="nav-link" to="/contact">
             Contact Us
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/about">
+          <Link className="nav-link" to="/about">
             About Us
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           {flag === true ? (
             <>
               <form onSubmit={LogOut}>
                 <button type="submit">
-                  <a className="nav-link">Log Out</a>
+                  <Link to="#" className="nav-link">
+                    Log Out
+                  </Link>
                 </button>
               </form>
             </>
           ) : (
             <>
-              <a className="nav-link"></a>
+              <Link to="#" className="nav-link"></Link>
             </>
           )}
           {/* <a className="nav-link">Log IN</a> */}
