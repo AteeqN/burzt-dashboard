@@ -12,7 +12,7 @@ function Account(data) {
           {data.data.message}
         </div>
         <div className="col-6">
-          <Link href="/">Go Back</Link>
+          <Link to="/">Go Back</Link>
         </div>
       </div>
     </div>
