@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -69,7 +70,7 @@ function HomePage({ data }) {
           </h1>
           {!token ? (
             <div className="container text-center">
-              <a
+              <Link
                 href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
                 className={styles.button}
               >
@@ -96,7 +97,7 @@ function HomePage({ data }) {
                   ></path>
                 </svg>
                 Sign in with Slack
-              </a>
+              </Link>
             </div>
           ) : (
             <>

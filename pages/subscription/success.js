@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Account(data) {
@@ -11,7 +12,7 @@ function Account(data) {
           {data.data.message}
         </div>
         <div className="col-6">
-          <a href="/">Go Back</a>
+          <Link href="/">Go Back</Link>
         </div>
       </div>
     </div>

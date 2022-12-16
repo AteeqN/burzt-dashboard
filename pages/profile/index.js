@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
