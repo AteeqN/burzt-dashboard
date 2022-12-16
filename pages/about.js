@@ -1,10 +1,12 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default About = () => {
+function About() {
   return (
     <div className="container">
       <h1>About Page</h1>
     </div>
   );
-};
+}
+
+export default About;
