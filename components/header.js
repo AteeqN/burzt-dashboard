@@ -82,7 +82,7 @@ function Header() {
 
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Burzt-Dashboard</Navbar.Brand>
+          <Navbar.Brand href="/">Burzt-Dashboard</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
