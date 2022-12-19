@@ -106,7 +106,10 @@ function HomePage({ data }) {
                 <div className="row">
                   {data.data.length > 0 ? (
                     data.data.map((pck, index) => (
-                      <div className="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 ">
+                      <div
+                        className="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6"
+                        key={index}
+                      >
                         {/* <div className="row mb-3 text-center">
                   <div className="col-md-8 offset-md-2">
                     <div className="row">
@@ -158,7 +161,7 @@ function HomePage({ data }) {
                 </div> */}
                         {/* {data.data.length > 0 ? (
                       data.data.map((pck, index) => ( */}
-                        <div class="card mb-4 box-shadow" key={index}>
+                        <div class="card mb-4 box-shadow">
                           <form method="POST" onSubmit={handleSubmit}>
                             <div class="card-header">
                               <h4 class="my-0 font-weight-normal">
