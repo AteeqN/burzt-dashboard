@@ -131,6 +131,11 @@
   width: 20px;
   margin-right: 12px;
 }
+
+.card-deck .card {
+  min-width: 220px;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -150,3 +155,36 @@
     filter: invert(1);
   }
 }
+
+@media (min-width: 576px) {
+  .card-deck .card {
+    display: flex;
+    -webkit-box-flex: 1;
+    flex: 1 0 0%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+}
+
+@media (min-width: 576px) {
+  .card-deck {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+}
+@media (min-width: 1024px) {
+}
+
+/* @media (min-width: 768px) {
+  
+  .container {
+    max-width: 960px;
+  }
+} */

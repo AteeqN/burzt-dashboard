@@ -2,9 +2,9 @@ import Head from "next/head";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+// import styles from "../styles/Home.module.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/Home.module.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-
 function HomePage({ data }) {
   const [token, setToken] = useState();
   const [priceID, setPriceID] = useState();
@@ -71,7 +71,8 @@ function HomePage({ data }) {
           {!token ? (
             <div className="container text-center">
               <Link
-                href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
+                // href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
+                href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Ff148-154-192-134-53.in.ngrok.io%2Fsign-in&client_id=3608320528308.4328768473665"
                 className={styles.button}
               >
                 <svg
@@ -102,7 +103,11 @@ function HomePage({ data }) {
           ) : (
             <>
               <div className="container">
-                <div className="row mb-3 text-center">
+                <div className="row">
+                  {data.data.length > 0 ? (
+                    data.data.map((pck, index) => (
+                      <div className="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 ">
+                        {/* <div className="row mb-3 text-center">
                   <div className="col-md-8 offset-md-2">
                     <div className="row">
                       {data.data.length > 0 ? (
@@ -150,6 +155,50 @@ function HomePage({ data }) {
                       )}
                     </div>
                   </div>
+                </div> */}
+                        {/* {data.data.length > 0 ? (
+                      data.data.map((pck, index) => ( */}
+                        <div class="card mb-4 box-shadow" key={index}>
+                          <form method="POST" onSubmit={handleSubmit}>
+                            <div class="card-header">
+                              <h4 class="my-0 font-weight-normal">
+                                {pck.title}
+                              </h4>
+                            </div>
+                            <div class="card-body">
+                              <h1 class="card-title pricing-card-title">
+                                &#x20B9;{pck.amount}{" "}
+                                <small class="text-muted">/ mo</small>
+                              </h1>
+                              <ul class="list-unstyled mt-3 mb-4">
+                                <li>{pck.description}</li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                              </ul>
+                              {/* <button
+                            type="button"
+                            class="btn btn-lg btn-block btn-outline-primary"
+                          >
+                            Sign up for free
+                          </button> */}
+                              <button
+                                type="submit"
+                                className="w-100 btn btn-lg btn-outline-primary"
+                                onClick={() => {
+                                  setPriceID(pck.price_id);
+                                }}
+                              >
+                                Get started
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div style={{ color: "red" }}> Record not found </div>
+                  )}
                 </div>
               </div>
             </>
