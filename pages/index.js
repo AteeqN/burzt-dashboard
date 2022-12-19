@@ -104,64 +104,10 @@ function HomePage({ data }) {
             <>
               <div className="container">
                 <div className="row">
-                  {data.data.length > 0 ? (
-                    data.data.map((pck, index) => (
-                      <div
-                        className="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6"
-                        key={index}
-                      >
-                        {/* <div className="row mb-3 text-center">
-                  <div className="col-md-8 offset-md-2">
-                    <div className="row">
-                      {data.data.length > 0 ? (
-                        data.data.map((pck, index) => (
-                          <div className="col" key={index}>
-                            <form method="POST" onSubmit={handleSubmit}>
-                              <div className="card mb-4 rounded-3 shadow-sm">
-                                <div className="card-header py-3">
-                                  <h4 className="my-0 fw-normal">
-                                    {pck.title}
-                                  </h4>
-                                </div>
-                                <div className="card-body">
-                                  <h1 className="card-title pricing-card-title">
-                                    <small className="text-muted fw-light">
-                                      &#x20B9;{pck.amount}/mo
-                                    </small>
-                                  </h1>
-                                  <ul className="list-unstyled mt-3 mb-4">
-                                    <li>{pck.description}</li>
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                  </ul>
-                                  <button
-                                    type="submit"
-                                    className="w-100 btn btn-lg btn-outline-primary"
-                                    onClick={() => {
-                                      setPriceID(pck.price_id);
-                                    }}
-                                  >
-                                    Get started
-                                  </button>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        ))
-                      ) : (
-                        <div style={{ color: "red" }}> Record not found </div>
-                      )}
-                    </div>
-                  </div>
-                </div> */}
-                        {/* {data.data.length > 0 ? (
-                      data.data.map((pck, index) => ( */}
-                        <div className="card mb-4 box-shadow">
+                  <div className="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                    {data.data.length > 0 ? (
+                      data.data.map((pck, index) => (
+                        <div className="card mb-4 box-shadow" key={index}>
                           <form method="POST" onSubmit={handleSubmit}>
                             <div className="card-header">
                               <h4 className="my-0 font-weight-normal">
@@ -179,12 +125,6 @@ function HomePage({ data }) {
                                 <li></li>
                                 <li></li>
                               </ul>
-                              {/* <button
-                            type="button"
-                            className="btn btn-lg btn-block btn-outline-primary"
-                          >
-                            Sign up for free
-                          </button> */}
                               <button
                                 type="submit"
                                 className="w-100 btn btn-lg btn-outline-primary"
@@ -197,11 +137,11 @@ function HomePage({ data }) {
                             </div>
                           </form>
                         </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div style={{ color: "red" }}> Record not found </div>
-                  )}
+                      ))
+                    ) : (
+                      <div style={{ color: "red" }}> Record not found </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </>
