@@ -161,19 +161,19 @@ function HomePage({ data }) {
                 </div> */}
                         {/* {data.data.length > 0 ? (
                       data.data.map((pck, index) => ( */}
-                        <div class="card mb-4 box-shadow">
+                        <div className="card mb-4 box-shadow">
                           <form method="POST" onSubmit={handleSubmit}>
-                            <div class="card-header">
-                              <h4 class="my-0 font-weight-normal">
+                            <div className="card-header">
+                              <h4 className="my-0 font-weight-normal">
                                 {pck.title}
                               </h4>
                             </div>
-                            <div class="card-body">
-                              <h1 class="card-title pricing-card-title">
+                            <div className="card-body">
+                              <h1 className="card-title pricing-card-title">
                                 &#x20B9;{pck.amount}{" "}
-                                <small class="text-muted">/ mo</small>
+                                <small className="text-muted">/ mo</small>
                               </h1>
-                              <ul class="list-unstyled mt-3 mb-4">
+                              <ul className="list-unstyled mt-3 mb-4">
                                 <li>{pck.description}</li>
                                 <li></li>
                                 <li></li>
@@ -181,7 +181,7 @@ function HomePage({ data }) {
                               </ul>
                               {/* <button
                             type="button"
-                            class="btn btn-lg btn-block btn-outline-primary"
+                            className="btn btn-lg btn-block btn-outline-primary"
                           >
                             Sign up for free
                           </button> */}
