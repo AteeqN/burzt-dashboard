@@ -104,10 +104,15 @@ function HomePage({ data }) {
             <>
               <div className="container">
                 <div className="row">
-                  <div className="col-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6">
-                    {data.data.length > 0 ? (
-                      data.data.map((pck, index) => (
-                        <div className="card mb-4 box-shadow" key={index}>
+                  {data.data.length > 0 ? (
+                    data.data.map((pck, index) => (
+                      <div
+                        className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6"
+                        key={index}
+                      >
+                        {/* {data.data.length > 0 ? (
+                      data.data.map((pck, index) => ( */}
+                        <div className="card mb-4 box-shadow">
                           <form method="POST" onSubmit={handleSubmit}>
                             <div className="card-header">
                               <h4 className="my-0 font-weight-normal">
@@ -137,11 +142,11 @@ function HomePage({ data }) {
                             </div>
                           </form>
                         </div>
-                      ))
-                    ) : (
-                      <div style={{ color: "red" }}> Record not found </div>
-                    )}
-                  </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div style={{ color: "red" }}> Record not found </div>
+                  )}
                 </div>
               </div>
             </>
