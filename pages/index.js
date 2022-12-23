@@ -2,9 +2,9 @@ import Head from "next/head";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-// import styles from "../styles/Home.module.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/Home.module.css";
+import { Loader } from "../components/loader";
 function HomePage({ data }) {
   const [token, setToken] = useState();
   const [priceID, setPriceID] = useState();
@@ -70,7 +70,7 @@ function HomePage({ data }) {
           </h1>
           {!token ? (
             <div className="container text-center">
-              <Link
+              {/* <Link
                 href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
                 // href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Ff148-154-192-134-53.in.ngrok.io%2Fsign-in&client_id=3608320528308.4328768473665"
                 className={styles.button}
@@ -98,7 +98,7 @@ function HomePage({ data }) {
                   ></path>
                 </svg>
                 Sign in with Slack
-              </Link>
+              </Link> */}
             </div>
           ) : (
             <>
@@ -112,7 +112,7 @@ function HomePage({ data }) {
                       >
                         {/* {data.data.length > 0 ? (
                       data.data.map((pck, index) => ( */}
-                        <div className="card mb-4 box-shadow">
+                        {/* <div className="card mb-4 box-shadow">
                           <form method="POST" onSubmit={handleSubmit}>
                             <div className="card-header">
                               <h4 className="my-0 font-weight-normal">
@@ -133,6 +133,41 @@ function HomePage({ data }) {
                               <button
                                 type="submit"
                                 className="w-100 btn btn-lg btn-outline-primary"
+                                onClick={() => {
+                                  setPriceID(pck.price_id);
+                                }}
+                              >
+                                Get started
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div> */}
+
+                        <div className={styles.priceBox}>
+                          <form method="POST" onSubmit={handleSubmit}>
+                            <div className="card-header">
+                              <div className={styles.pricename}>
+                                {pck.title}
+                              </div>
+                            </div>
+                            <div className="card-body">
+                              <div className={styles.priceTitle}>
+                                &#x20B9;{pck.amount}{" "}
+                                <small className="text-muted"> / mo</small>
+                              </div>
+                              <ul className="list-unstyled mt-3 mb-4">
+                                <li className={styles.priceDes}>
+                                  {pck.description}
+                                </li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                              </ul>
+                              <button
+                                type="submit"
+                                // className="w-100 btn btn-lg btn-outline-primary"
+                                className={styles.startedButton}
                                 onClick={() => {
                                   setPriceID(pck.price_id);
                                 }}

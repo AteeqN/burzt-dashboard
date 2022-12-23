@@ -136,6 +136,101 @@
   min-width: 220px;
 }
 
+.priceBox {
+  background-color: #fff;
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 0 4px 30px 0 hsl(0deg 0% 60% / 20%);
+  padding: 1.5rem 1.25rem;
+  padding-top: 1.5rem;
+  padding-right: 1.25rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.25rem;
+  min-height: 292px;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  min-width: 400px;
+}
+
+.prictItem {
+  min-height: 290px;
+  position: relative;
+}
+.pricename {
+  font-size: 22px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+  color: #0a3661;
+  padding: 5px 0;
+  padding-top: 5px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+  padding-left: 0px;
+}
+
+.priceTitle {
+  font-size: 48px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: normal;
+  text-align: left;
+  color: #5d54fc;
+  display: flex;
+  padding: 10px 0;
+}
+
+.priceAlign {
+  /* position: absolute; */
+  bottom: 20px;
+  width: 100%;
+}
+
+.priceDes {
+  font-size: 18px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000;
+  padding: 5px 0;
+}
+
+.startedButton {
+  width: 100%;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 2px solid #5d54fc;
+  background-color: #fff;
+  color: #5d54fc;
+  padding: 0.5rem 0;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 15px 0 0;
+  line-height: 34px;
+}
+
+@media (max-width: 391px) {
+  .priceBox {
+    min-width: 0px;
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
