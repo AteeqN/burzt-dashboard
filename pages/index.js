@@ -102,7 +102,7 @@ function HomePage({ data }) {
             </div>
           ) : (
             <>
-              <div className="container">
+              <div className="container d-flex justify-content-center align-content-center">
                 <div className="row">
                   {data.data.length > 0 ? (
                     data.data.map((pck, index) => (
