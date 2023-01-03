@@ -2,26 +2,31 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import { Loader } from "../../components/loader";
 // import Middlewar from "../_middleware.ts";
 
 function Profile({ data }) {
   const [subscription, setEmptySubscription] = useState("");
+  // const [loading, setLoading] = useState(false);
   // setEmptySubscription(data.subscription_status);
   useEffect(() => {
     if (data.subscription_status.length === 0) {
+      // setLoading(true);
       console.log("subscripiton is empty now");
       setEmptySubscription("Not Active");
       // setSubscription("Subscription is not active yet");
     } else if (data.subscription_status.length > 0) {
       if (data.subscription_status === "active") {
+        // setLoading(true);
         setEmptySubscription("Active");
       } else if (data.subscription_status === "canceled") {
+        // setLoading(true);
         setEmptySubscription("Cancel");
       }
     }
   }, []);
 
-  // console.log("subs", data);
+  console.log("subs", data);
 
   return (
     <>
@@ -55,6 +60,7 @@ function Profile({ data }) {
           </div>
         </main>
       </div>
+      {/* {loading ? <Loader /> : null} */}
     </>
   );
 }
@@ -74,7 +80,7 @@ export async function getServerSideProps(context) {
   });
 
   const data = await resp.json();
-  // console.log(data);
+  console.log(data);
   return {
     // props: { data: data.data }, // will be passed to the page component as props
     props: { data: data },

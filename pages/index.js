@@ -5,14 +5,32 @@ import Link from "next/link";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/Home.module.css";
 import { Loader } from "../components/loader";
-function HomePage({ data }) {
+function HomePage({ data, data1 }) {
+  const [loading, setLoading] = useState(false);
   const [token, setToken] = useState();
   const [priceID, setPriceID] = useState();
+  const [packageID, setPackageID] = useState();
 
   useEffect(() => {
     setToken(Cookies.get("token"));
+    setPackageID(data1.price_id);
   }, []);
 
+  console.log("package", data);
+  console.log("subscription", data1.price_id);
+  // useEffect(() => {
+  //   var url = process.env.API_BASE_URL + "user-profile";
+  //   const resp = fetch(url, {
+  //     headers: {
+  //       Accept: "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     method: "GET",
+  //   });
+
+  //   const data = resp.json();
+  //   console.log(data);
+  // }, []);
   // Handles the submit event on form submit.
 
   const handleSubmit = async (event) => {
@@ -43,6 +61,7 @@ function HomePage({ data }) {
     console.log(result);
     if (response.status == 200) {
       // console.log(result);
+      setLoading(true);
       window.location.replace(result.url);
     } else if (response.status == 403) {
       console.log(result.error);
@@ -143,40 +162,130 @@ function HomePage({ data }) {
                           </form>
                         </div>
                       </div> */}
-
-                        <div className={styles.priceBox}>
-                          <form method="POST" onSubmit={handleSubmit}>
-                            <div className="card-header">
-                              <div className={styles.pricename}>
-                                {pck.title}
+                        {packageID === pck.price_id ? (
+                          // <div className={styles.selectedPackage}>
+                          <div
+                            className={styles.priceBox}
+                            style={{ background: "#5d54fc" }}
+                          >
+                            <form method="POST" onSubmit={handleSubmit}>
+                              <div className="card-header">
+                                {/* <p style={{ color: "#fff" }}>
+                                  {" "}
+                                  {" "}
+                                </p> */}
+                                <div
+                                  className={styles.pricename}
+                                  style={{ color: "#fff" }}
+                                >
+                                  {pck.title}
+                                </div>
                               </div>
-                            </div>
-                            <div className="card-body">
-                              <div className={styles.priceTitle}>
-                                &#x20B9;{pck.amount}{" "}
-                                <small className="text-muted"> / mo</small>
+                              <div className="card-body">
+                                <div
+                                  className={styles.priceTitle}
+                                  style={{ color: "#fff" }}
+                                >
+                                  &#x20B9;{pck.amount}{" "}
+                                  <small className="text-white"> / mo</small>
+                                </div>
+                                <ul className="list-unstyled mt-3 mb-4">
+                                  <li
+                                    className={styles.priceDes}
+                                    style={{ color: "#fff" }}
+                                  >
+                                    {pck.description}
+                                  </li>
+                                  <li></li>
+                                  <li></li>
+                                  <li></li>
+                                </ul>
+                                {packageID === pck.price_id ? (
+                                  <>
+                                    <button
+                                      type="submit"
+                                      // className="w-100 btn btn-lg btn-outline-primary"
+                                      className={styles.disabledButton}
+                                      onClick={() => {
+                                        setPriceID(pck.price_id);
+                                      }}
+                                      disabled
+                                    >
+                                      Get started
+                                    </button>
+                                  </>
+                                ) : (
+                                  <>
+                                    <button
+                                      type="submit"
+                                      // className="w-100 btn btn-lg btn-outline-primary"
+                                      className={styles.startedButton}
+                                      onClick={() => {
+                                        setPriceID(pck.price_id);
+                                      }}
+                                    >
+                                      Get started
+                                    </button>
+                                  </>
+                                )}
                               </div>
-                              <ul className="list-unstyled mt-3 mb-4">
-                                <li className={styles.priceDes}>
-                                  {pck.description}
-                                </li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                              </ul>
-                              <button
-                                type="submit"
-                                // className="w-100 btn btn-lg btn-outline-primary"
-                                className={styles.startedButton}
-                                onClick={() => {
-                                  setPriceID(pck.price_id);
-                                }}
-                              >
-                                Get started
-                              </button>
+                            </form>
+                          </div>
+                        ) : (
+                          // </div>
+                          <div>
+                            <div className={styles.priceBox}>
+                              <form method="POST" onSubmit={handleSubmit}>
+                                <div className="card-header">
+                                  <div className={styles.pricename}>
+                                    {pck.title}
+                                  </div>
+                                </div>
+                                <div className="card-body">
+                                  <div className={styles.priceTitle}>
+                                    &#x20B9;{pck.amount}{" "}
+                                    <small className="text-muted"> / mo</small>
+                                  </div>
+                                  <ul className="list-unstyled mt-3 mb-4">
+                                    <li className={styles.priceDes}>
+                                      {pck.description}
+                                    </li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                  </ul>
+                                  {/* {packageID === pck.price_id ? (
+                                <> */}
+                                  <button
+                                    type="submit"
+                                    // className="w-100 btn btn-lg btn-outline-primary"
+                                    className={styles.startedButton}
+                                    onClick={() => {
+                                      setPriceID(pck.price_id);
+                                    }}
+                                  >
+                                    Get started
+                                  </button>
+                                  {/* </> */}
+                                  {/* ) : (
+                                <> */}
+                                  {/* <button
+                                    type="submit"
+                                    // className="w-100 btn btn-lg btn-outline-primary"
+                                    className={styles.startedButton}
+                                    onClick={() => {
+                                      setPriceID(pck.price_id);
+                                    }}
+                                  >
+                                    Get started
+                                  </button> */}
+                                  {/* </>
+                              )}  */}
+                                </div>
+                              </form>
                             </div>
-                          </form>
-                        </div>
+                          </div>
+                        )}
                       </div>
                     ))
                   ) : (
@@ -188,6 +297,7 @@ function HomePage({ data }) {
           )}
         </main>
       </div>
+      {loading ? <Loader /> : null}
     </>
   );
 }
@@ -213,8 +323,22 @@ export async function getServerSideProps(context) {
   const response = await fetch(endpoint, options);
   const result = await response.json();
   // console.log(result);
+
+  const endpoint1 = `${apiUrl}user-profile`;
+
+  const options1 = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const subscripton = await fetch(endpoint1, options1);
+  const subresult = await subscripton.json();
+
   return {
-    props: { data: result },
+    props: { data: result, data1: subresult },
   };
 }
 

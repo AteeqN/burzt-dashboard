@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import Cookies from "js-cookie";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Image from "next/image";
@@ -10,32 +9,20 @@ import { Loader } from "./loader";
 import * as customHeader from "./Header.module.css";
 
 function Header({ data }) {
-  const [flag, setFlag] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [token, setToken] = useState("");
 
-  console.log("profile", data);
   useEffect(() => {
-    const token = Cookies.get("token");
-    // console.log(typeof token);
-    // console.log(typeof token);
-    if (token) {
-      setFlag(true);
-    }
+    setToken(Cookies.get("token"));
   }, []);
 
   const LogOut = () => {
     setLoading(true);
-    // const token = Cookies.get("token");
     Cookies.remove("token");
-    setFlag(false);
-    // setLoader(true);
     window.location.reload();
-    // if (!token) {
-    //   Router.push("/");
-    // }
-    // useEffect(() => setToken(), []);
   };
 
+  // console.log(token);
   return (
     <>
       {/* <div className="container">
@@ -104,39 +91,11 @@ function Header({ data }) {
               <Nav.Link href="/about" className={customHeader.customLink}>
                 About Us
               </Nav.Link> */}
-              {flag === true ? (
-                <>
-                  <NavDropdown title="Settings" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="profile">
-                      {/* <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 150px;"
-                    alt="Avatar" /> */}
-                      <Image
-                        src={Profile}
-                        alt="content"
-                        className={customHeader.avatar}
-                      />
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
-
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4" onClick={LogOut}>
-                      {/* <form onSubmit={LogOut}>
-                        <button
-                          type="submit"
-                          // className={customHeader.startedButton}
-                        >
-                          Log Out
-                        </button>
-                      </form> */}
-                      Sign Out
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </>
-              ) : (
+              {!token ? (
                 <>
                   <Nav.Link
-                    href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
-                    // href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2F2c30-206-84-188-47.eu.ngrok.io%2Fsign-in&client_id=2214326541360.4420644231987"
+                    // href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
+                    href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2F1abc-154-192-133-36.in.ngrok.io%2Fsign-in&client_id=3608320528308.4328768473665"
                     className={customHeader.button}
                   >
                     <svg
@@ -163,6 +122,35 @@ function Header({ data }) {
                     </svg>
                     Sign in with Slack
                   </Nav.Link>
+                </>
+              ) : (
+                <>
+                  {/* {!loading ? <Loader /> : null} */}
+                  <NavDropdown title="Settings" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="profile">
+                      {/* <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 150px;"
+                    alt="Avatar" /> */}
+                      <Image
+                        src={Profile}
+                        alt="content"
+                        className={customHeader.avatar}
+                      />
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="profile">Profile</NavDropdown.Item>
+
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4" onClick={LogOut}>
+                      {/* <form onSubmit={LogOut}>
+                        <button
+                          type="submit"
+                          // className={customHeader.startedButton}
+                        >
+                          Log Out
+                        </button>
+                      </form> */}
+                      Sign Out
+                    </NavDropdown.Item>
+                  </NavDropdown>
                 </>
               )}
             </Nav>
