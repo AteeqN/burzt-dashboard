@@ -8,18 +8,19 @@ function SignIn({ data }) {
 
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
-    setTimeout(function () {
-      const { pathname } = Router;
-      // window.location.reload();
-      if (pathname == "/signin") {
-        setLoading(true);
-        // window.location.reload();
-        Router.push("/");
-        // exit(0);
-        // return window.stop();
-      }
-    }, 2000);
+    // setTimeout(function () {
+    //   const { pathname } = Router;
+    //   // window.location.reload();
+    //   if (pathname == "/signin") {
+    //     setLoading(true);
+    //     // window.location.reload();
+    //     Router.push("/");
+    //     // exit(0);
+    //     // return window.stop();
+    //   }
+    // }, 2000);
   });
+
   // window.location.reload();
   // const { pathname } = Router;
   // if (pathname === "/signin") {
@@ -34,7 +35,7 @@ function SignIn({ data }) {
     if (pathname == "/signin") {
       setLoading(true);
       // window.location.reload();
-      Router.push("/");
+      Router.reload(Router.push("/"));
       // exit(0);
       // return window.stop();
     }
