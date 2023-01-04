@@ -4,28 +4,28 @@ import Cookies from "js-cookie";
 import { Loader } from "../../components/loader";
 
 function SignIn({ data }) {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // const { pathname } = Router;
     Cookies.set("token", data, { expires: 7, path: "/" });
-    // if (pathname === "/signin") {
-    //   Router.push("/");
-    // }
+    if (pathname === "/signin") {
+      Router.push("/");
+    }
   });
 
-  setTimeout(function () {
-    const { pathname } = Router;
-    if (pathname == "/signin") {
-      setLoading(true);
-      window.location.reload();
-      Router.push("/");
-      // exit(0);
-      return window.stop();
-    }
-  }, 1);
+  // setTimeout(function () {
+  //   const { pathname } = Router;
+  //   if (pathname == "/signin") {
+  //     setLoading(true);
+  //     window.location.reload();
+  //     Router.push("/");
+  //     // exit(0);
+  //     return window.stop();
+  //   }
+  // }, 1);
   // {loading ? <Loader /> : null}
-  return <div>{loading ? <Loader /> : null}</div>;
+  return <div></div>;
 }
 
 export async function getServerSideProps({ query: { token } }) {
