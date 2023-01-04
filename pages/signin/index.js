@@ -5,6 +5,7 @@ import { Loader } from "../../components/loader";
 
 function SignIn({ data }) {
   const [loading, setLoading] = useState(false);
+  // const { pathname } = Router;
 
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
@@ -21,6 +22,7 @@ function SignIn({ data }) {
     // }, 2000);
   });
 
+  Router.reload(window.location.pathname);
   // window.location.reload();
   // const { pathname } = Router;
   // if (pathname === "/signin") {
@@ -29,17 +31,17 @@ function SignIn({ data }) {
   //   window.location.reload();
   //   // window.stop();
   // }
-  setTimeout(function () {
-    const { pathname } = Router;
-    // window.location.reload();
-    if (pathname == "/signin") {
-      setLoading(true);
-      // window.location.reload();
-      Router.reload(Router.push("/"));
-      // exit(0);
-      // return window.stop();
-    }
-  }, 1);
+  // setTimeout(function () {
+  //   const { pathname } = Router;
+  //   // window.location.reload();
+  //   if (pathname == "/signin") {
+  //     setLoading(true);
+  //     // window.location.reload();
+  //     Router.reload(Router.push("/"));
+  //     // exit(0);
+  //     // return window.stop();
+  //   }
+  // }, 1);
 
   // setTimeout(function () {
   //   const { pathname } = Router;
