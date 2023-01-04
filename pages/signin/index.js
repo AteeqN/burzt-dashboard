@@ -5,10 +5,10 @@ import { Loader } from "../../components/loader";
 
 function SignIn({ data }) {
   const [loading, setLoading] = useState(false);
-  // const { pathname } = Router;
 
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
+    setLoading(true);
     // setTimeout(function () {
     //   const { pathname } = Router;
     //   // window.location.reload();
@@ -21,8 +21,11 @@ function SignIn({ data }) {
     //   }
     // }, 2000);
   });
+  const { pathname } = Router;
+  if (pathname === "/signin") {
+    Router.reload(window.location.pathname);
+  }
 
-  Router.reload(window.location.pathname);
   // window.location.reload();
   // const { pathname } = Router;
   // if (pathname === "/signin") {
