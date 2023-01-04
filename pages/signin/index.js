@@ -8,6 +8,17 @@ function SignIn({ data }) {
 
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
+    setTimeout(function () {
+      const { pathname } = Router;
+      // window.location.reload();
+      if (pathname == "/signin") {
+        setLoading(true);
+        // window.location.reload();
+        Router.push("/");
+        // exit(0);
+        // return window.stop();
+      }
+    }, 1);
   });
   // window.location.reload();
   // const { pathname } = Router;
