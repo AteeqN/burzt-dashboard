@@ -7,7 +7,7 @@ function SignIn({ data }) {
   // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // const { pathname } = Router;
+    const { pathname } = Router;
     Cookies.set("token", data, { expires: 7, path: "/" });
     if (pathname === "/signin") {
       Router.push("/");
