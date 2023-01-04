@@ -28,7 +28,7 @@ function SignIn({ data }) {
       Router.push("/");
     }
   }, []);
-  Router.reload("/");
+  Router.reload(window.location.pathname);
   // const { pathname } = Router;
   // Router.reload(window.location.pathname);
   // if (pathname === "/signin") {
