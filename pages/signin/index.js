@@ -21,10 +21,11 @@ function SignIn({ data }) {
     //   }
     // }, 2000);
   });
-  const { pathname } = Router;
-  if (pathname === "/signin") {
-    Router.reload(window.location.pathname);
-  }
+  // const { pathname } = Router;
+  Router.reload(window.location.pathname);
+  // if (pathname === "/signin") {
+
+  // }
 
   // window.location.reload();
   // const { pathname } = Router;
