@@ -14,6 +14,7 @@ function Header({ data }) {
 
   useEffect(() => {
     setToken(Cookies.get("token"));
+    window.location.reload();
   }, []);
 
   const LogOut = () => {

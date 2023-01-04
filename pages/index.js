@@ -80,7 +80,7 @@ function HomePage({ data, data1 }) {
     <>
       <div className={styles.container}>
         <Head>
-          <title>Welcome to Next.js!</title>
+          <title>Welcome to Burzt Dashboard</title>
         </Head>
         <main className={styles.main}>
           <h1 className={styles.title}>
