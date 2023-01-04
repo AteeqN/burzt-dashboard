@@ -21,8 +21,15 @@ function SignIn({ data }) {
     //   }
     // }, 2000);
   });
+
+  useEffect(() => {
+    const { pathname } = Router;
+    if (pathname === "/signin") {
+      Router.push("/");
+    }
+  }, []);
   // const { pathname } = Router;
-  Router.reload(window.location.pathname);
+  // Router.reload(window.location.pathname);
   // if (pathname === "/signin") {
 
   // }
