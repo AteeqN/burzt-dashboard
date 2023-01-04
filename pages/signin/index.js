@@ -4,18 +4,30 @@ import Cookies from "js-cookie";
 import { Loader } from "../../components/loader";
 
 function SignIn({ data }) {
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const { pathname } = Router;
     Cookies.set("token", data, { expires: 7, path: "/" });
-    if (pathname === "/signin") {
-      setLoading(true);
-      window.location.reload();
-      Router.push("/");
-      window.stop();
-    }
   });
+  // window.location.reload();
+  // const { pathname } = Router;
+  // if (pathname === "/signin") {
+  //   setLoading(true);
+  //   Router.push("/");
+  //   window.location.reload();
+  //   // window.stop();
+  // }
+  setTimeout(function () {
+    const { pathname } = Router;
+    // window.location.reload();
+    if (pathname == "/signin") {
+      setLoading(true);
+      // window.location.reload();
+      Router.push("/");
+      // exit(0);
+      // return window.stop();
+    }
+  }, 1);
 
   // setTimeout(function () {
   //   const { pathname } = Router;
