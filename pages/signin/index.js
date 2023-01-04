@@ -13,7 +13,7 @@ function SignIn({ data }) {
       setLoading(true);
       window.location.reload();
       Router.push("/");
-      return window.stop();
+      window.stop();
     }
   });
 
