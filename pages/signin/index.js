@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import Cookies from "js-cookie";
 import { Loader } from "../../components/loader";
-import { exit } from "process";
 
 function SignIn({ data }) {
   const [loading, setLoading] = useState(false);
