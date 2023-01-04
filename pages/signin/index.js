@@ -18,7 +18,7 @@ function SignIn({ data }) {
         // exit(0);
         // return window.stop();
       }
-    }, 1);
+    }, 2000);
   });
   // window.location.reload();
   // const { pathname } = Router;
