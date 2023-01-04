@@ -1,18 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Router from "next/router";
 import Cookies from "js-cookie";
+import { Loader } from "../../components/loader";
 
 function SignIn({ data }) {
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
     const { pathname } = Router;
 
     if (pathname == "/signin") {
+      setLoading(true);
       Router.push("/");
+      // window.location.reload();
     }
   });
 
-  return <div></div>;
+  return <div>{loading ? <Loader /> : null}</div>;
 }
 
 export async function getServerSideProps({ query: { token } }) {
