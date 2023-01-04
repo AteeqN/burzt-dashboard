@@ -20,7 +20,6 @@ function SignIn({ data }) {
       return window.stop();
     }
   }, 1);
-  S;
 
   return <div>{loading ? <Loader /> : null}</div>;
 }
