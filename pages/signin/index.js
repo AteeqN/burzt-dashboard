@@ -10,7 +10,10 @@ function SignIn({ data }) {
     const { pathname } = Router;
     Cookies.set("token", data, { expires: 7, path: "/" });
     if (pathname === "/signin") {
+      setLoading(true);
+      window.location.reload();
       Router.push("/");
+      return window.stop();
     }
   });
 
@@ -25,7 +28,7 @@ function SignIn({ data }) {
   //   }
   // }, 1);
   // {loading ? <Loader /> : null}
-  return <div></div>;
+  return <div>{loading ? <Loader /> : null}</div>;
 }
 
 export async function getServerSideProps({ query: { token } }) {
