@@ -25,7 +25,7 @@ function SignIn({ data }) {
   useEffect(() => {
     const { pathname } = Router;
     if (pathname === "/signin") {
-      Router.push("/");
+      Router.push(window.location.pathname);
     }
   }, []);
   // const { pathname } = Router;
