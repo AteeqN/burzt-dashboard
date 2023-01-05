@@ -3,35 +3,46 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 // import { Loader } from "../../components/loader";
 
+const useUser = () => ({ user: null, loading: false });
+
 function SignIn({ data }) {
+  const { user, loading } = useUser();
   const router = useRouter();
+  // const router = useRouter();
   // const [loading, setLoading] = useState(false);
 
   // console.log(router.pathname);
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
-    if (router.pathname === "/signin") {
-      // console.log("route", router);
+    if (!(user || loading)) {
       router.push("/");
-      router.reload(window.location.pathname);
     }
-    return window.stop();
-    // if (pathname === "/signin") {
-    //   console.log("route", pathname);
-    // }
-    // setTimeout(function () {
-    //   const { pathname } = Router;
-    //   // window.location.reload();
-    //   if (pathname == "/signin") {
-    //     setLoading(true);
-    //     // window.location.reload();
-    //     Router.push("/");
-    //     // exit(0);
-    //
-    //   }
-    // }, 2000);
-  }, []);
+  }, [user, loading]);
 
+  // useEffect(() => {
+  //   Cookies.set("token", data, { expires: 7, path: "/" });
+  //   if (router.pathname === "/signin") {
+  //     // console.log("route", router);
+  //     router.push("/");
+  //     // router.reload(router.pathname);
+  //   }
+  //   router.reload(window.location.pathname);
+  //   // if (pathname === "/signin") {
+  //   //   console.log("route", pathname);
+  //   // }
+  //   // setTimeout(function () {
+  //   //   const { pathname } = Router;
+  //   //   // window.location.reload();
+  //   //   if (pathname == "/signin") {
+  //   //     setLoading(true);
+  //   //     // window.location.reload();
+  //   //     Router.push("/");
+  //   //     // exit(0);
+  //   //
+  //   //   }
+  //   // }, 2000);
+  // }, []);
+  // return window.stop();
   // console.log(router);
   // if (router == "/signin") {
   //   console.log("cont", router);
