@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import { Loader } from "../../components/loader";
+// import { Loader } from "../../components/loader";
 
 function SignIn({ data }) {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
-    setLoading(true);
+    router.replace("/");
     // setTimeout(function () {
     //   const { pathname } = Router;
     //   // window.location.reload();
@@ -22,13 +23,15 @@ function SignIn({ data }) {
     // }, 2000);
   });
 
-  useEffect(() => {
-    const { pathname } = Router;
-    if (pathname === "/signin") {
-      Router.push("/");
-    }
-  }, [loading]);
-  // Router.reload();
+  // useEffect(() => {
+  //   // setLoading(true);
+  //   // const { pathname } = Router;
+  //   if (router === "/signin") {
+  //     // router.push("/");
+  //     router.replace("/");
+  //   }
+  // }, []);
+
   // const { pathname } = Router;
   // Router.reload(window.location.pathname);
   // if (pathname === "/signin") {
@@ -66,7 +69,7 @@ function SignIn({ data }) {
   //   }
   // }, 1);
   // {loading ? <Loader /> : null}
-  return <div>{loading ? <Loader /> : null}</div>;
+  return <div></div>;
 }
 
 export async function getServerSideProps({ query: { token } }) {
