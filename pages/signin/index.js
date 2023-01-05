@@ -15,7 +15,7 @@ function SignIn({ data }) {
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
     if (!(user || loading)) {
-      router.push("/");
+      router.replace("/");
     }
   }, [user, loading]);
 
