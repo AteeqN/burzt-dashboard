@@ -4,12 +4,21 @@ import Cookies from "js-cookie";
 // import { Loader } from "../../components/loader";
 
 function SignIn({ data }) {
-  // const [loading, setLoading] = useState(false);
   const router = useRouter();
+  // const [loading, setLoading] = useState(false);
 
+  // console.log(router.pathname);
   useEffect(() => {
     Cookies.set("token", data, { expires: 7, path: "/" });
-    router.replace("/");
+    if (router.pathname === "/signin") {
+      // console.log("route", router);
+      router.push("/");
+      router.reload(window.location.pathname);
+    }
+    return window.stop();
+    // if (pathname === "/signin") {
+    //   console.log("route", pathname);
+    // }
     // setTimeout(function () {
     //   const { pathname } = Router;
     //   // window.location.reload();
@@ -18,10 +27,23 @@ function SignIn({ data }) {
     //     // window.location.reload();
     //     Router.push("/");
     //     // exit(0);
-    //     // return window.stop();
+    //
     //   }
     // }, 2000);
-  });
+  }, []);
+
+  // console.log(router);
+  // if (router == "/signin") {
+  //   console.log("cont", router);
+  //   // router.push("/");
+  //   // if (typeof window === "undefined") {
+  //   //   router.reload(window.location.pathname);
+  //   // }
+  //   // router.reload(window.location.pathname);
+  // }
+  /* we're on the server */
+
+  // return window.stop();
 
   // useEffect(() => {
   //   // setLoading(true);
