@@ -52,7 +52,7 @@ function SignIn({ data }) {
       });
     }
     // Cookies.set("token", data, { expires: 7, path: "/" });
-  }, []);
+  }, [dispatch, data]);
 
   // useEffect(() => {
   //   Cookies.set("token", data, { expires: 7, path: "/" });

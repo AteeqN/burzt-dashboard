@@ -7,20 +7,21 @@ import styles from "../styles/Home.module.css";
 import { Loader } from "../components/loader";
 import { useDispatch, useSelector } from "react-redux";
 import { getSampleData } from "./store/actions/sampleAction";
+
 function HomePage({ data, data1 }) {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState();
   const [priceID, setPriceID] = useState();
   const dispatch = useDispatch();
-  const sampleListData = useSelector((state) => state.sampleData);
-  const { sample } = sampleListData;
+  // const sampleListData = useSelector((state) => state.sampleData);
+  // const { sample } = sampleListData;
   const [packageID, setPackageID] = useState();
   // console.log("redux", sample);
   useEffect(() => {
     setPackageID(data1.price_id);
     setToken(Cookies.get("token"));
     dispatch(getSampleData());
-  }, [dispatch]);
+  }, [dispatch, data1]);
 
   // console.log("package", data);
   // console.log("subscription", data1.price_id);

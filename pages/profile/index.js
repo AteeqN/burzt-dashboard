@@ -24,7 +24,7 @@ function Profile({ data }) {
         setEmptySubscription("Cancel");
       }
     }
-  }, []);
+  }, [data]);
 
   console.log("subs", data);
 
