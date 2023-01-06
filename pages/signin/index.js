@@ -1,23 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_SAMPLE, SAMPLE_ERROR } from "../store/types";
+
 // import { Loader } from "../../components/loader";
 
-const useUser = () => ({ user: null, loading: false });
+// const useUser = () => ({ user: null, loading: false });
 
 function SignIn({ data }) {
-  const { user, loading } = useUser();
+  // const { user, loading } = useUser();
+  const dispatch = useDispatch();
   const router = useRouter();
   // const router = useRouter();
   // const [loading, setLoading] = useState(false);
 
   // console.log(router.pathname);
+  // const getTokenData = () => async (dispatch) => {
+  //   try {
+  //     dispatch({
+  //       type: GET_SAMPLE,
+  //       // payload: Cookies.get("token"),
+  //       payload: [1, 2, 3, 4, 5, 6],
+  //     });
+  //   } catch (error) {
+  //     dispatch({
+  //       type: SAMPLE_ERROR,
+  //       payload: "error message",
+  //     });
+  //   }
+  // };
   useEffect(() => {
-    Cookies.set("token", data, { expires: 7, path: "/" });
-    if (!(user || loading)) {
-      router.replace("/");
+    try {
+      dispatch({
+        type: GET_SAMPLE,
+        payload: Cookies.set("token", data, {
+          expires: 7,
+          path: "/",
+        }),
+        // payload: [1, 2, 3, 4, 5, 6],
+      });
+      if (router.pathname === "/signin") {
+        //     // console.log("route", router);
+        router.push("/");
+        //     // router.reload(router.pathname);
+      }
+    } catch (error) {
+      dispatch({
+        type: SAMPLE_ERROR,
+        payload: "error message",
+      });
     }
-  }, [user, loading]);
+    // Cookies.set("token", data, { expires: 7, path: "/" });
+  }, []);
 
   // useEffect(() => {
   //   Cookies.set("token", data, { expires: 7, path: "/" });

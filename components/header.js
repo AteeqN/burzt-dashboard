@@ -5,22 +5,42 @@ import Image from "next/image";
 import Logo from "../public/images/burzt.png";
 import Profile from "../public/images/profile.png";
 import { Loader } from "./loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getSampleData } from "../pages/store/actions/sampleAction";
+import { GET_SAMPLE, SAMPLE_ERROR } from "../pages/store/types";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import * as customHeader from "./Header.module.css";
 
-function Header({ data }) {
+function Header() {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState("");
 
+  const dispatch = useDispatch();
+  const sampleListData = useSelector((state) => state.sampleData);
+  const { sample } = sampleListData;
+
+  console.log("header", sample);
   useEffect(() => {
-    setToken(Cookies.get("token"));
+    // setToken(Cookies.get("token"));
+    const jsonToken = Cookies.get("token");
+    setToken(jsonToken);
+    console.log(jsonToken);
+    const newToken = jsonToken ? jsonToken : null;
+    if (newToken) {
+      dispatch(getSampleData());
+    }
+
     // window.location.reload();
-  }, []);
+  }, [dispatch]);
 
   const LogOut = () => {
     setLoading(true);
-    Cookies.remove("token");
+    // Cookies.remove("token");
     window.location.reload();
+    dispatch({
+      type: GET_SAMPLE,
+      payload: Cookies.remove("token"),
+    });
   };
 
   // console.log(token);
@@ -95,8 +115,8 @@ function Header({ data }) {
               {!token ? (
                 <>
                   <Nav.Link
-                    href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
-                    // href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2F2d05-206-84-189-11.ap.ngrok.io%2Fsign-in&client_id=3608320528308.4328768473665"
+                    // href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
+                    href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fa23f-206-84-189-29.in.ngrok.io%2Fsign-in&client_id=3608320528308.4328768473665"
                     className={customHeader.button}
                   >
                     <svg

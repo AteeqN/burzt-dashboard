@@ -5,19 +5,25 @@ import Link from "next/link";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/Home.module.css";
 import { Loader } from "../components/loader";
+import { useDispatch, useSelector } from "react-redux";
+import { getSampleData } from "./store/actions/sampleAction";
 function HomePage({ data, data1 }) {
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState();
   const [priceID, setPriceID] = useState();
+  const dispatch = useDispatch();
+  const sampleListData = useSelector((state) => state.sampleData);
+  const { sample } = sampleListData;
   const [packageID, setPackageID] = useState();
-
+  // console.log("redux", sample);
   useEffect(() => {
-    setToken(Cookies.get("token"));
     setPackageID(data1.price_id);
-  }, []);
+    setToken(Cookies.get("token"));
+    dispatch(getSampleData());
+  }, [dispatch]);
 
-  console.log("package", data);
-  console.log("subscription", data1.price_id);
+  // console.log("package", data);
+  // console.log("subscription", data1.price_id);
   // useEffect(() => {
   //   var url = process.env.API_BASE_URL + "user-profile";
   //   const resp = fetch(url, {
@@ -87,6 +93,7 @@ function HomePage({ data, data1 }) {
             Welcome to <Link href="#">Burzt Dashboard!</Link>
             {/* <h1>{process.env.API_BASE_URL}</h1> */}
           </h1>
+          {/* <h3>{JSON.stringify(sample)}</h3> */}
           {!token ? (
             <div className="container text-center">
               {/* <Link
@@ -129,71 +136,87 @@ function HomePage({ data, data1 }) {
                         className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6"
                         key={index}
                       >
-                        {/* {data.data.length > 0 ? (
-                      data.data.map((pck, index) => ( */}
-                        {/* <div className="card mb-4 box-shadow">
-                          <form method="POST" onSubmit={handleSubmit}>
-                            <div className="card-header">
-                              <h4 className="my-0 font-weight-normal">
-                                {pck.title}
-                              </h4>
-                            </div>
-                            <div className="card-body">
-                              <h1 className="card-title pricing-card-title">
-                                &#x20B9;{pck.amount}{" "}
-                                <small className="text-muted">/ mo</small>
-                              </h1>
-                              <ul className="list-unstyled mt-3 mb-4">
-                                <li>{pck.description}</li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                              </ul>
-                              <button
-                                type="submit"
-                                className="w-100 btn btn-lg btn-outline-primary"
-                                onClick={() => {
-                                  setPriceID(pck.price_id);
-                                }}
-                              >
-                                Get started
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </div> */}
                         {packageID === pck.price_id ? (
-                          // <div className={styles.selectedPackage}>
-                          <div
-                            className={styles.priceBox}
-                            style={{ background: "#5d54fc" }}
-                          >
+                          <div className={styles.selectedPackage}>
+                            <div
+                              className={styles.priceBox}
+                              style={{ background: "#5d54fc" }}
+                            >
+                              <form method="POST" onSubmit={handleSubmit}>
+                                <div className="card-header">
+                                  <div
+                                    className={styles.pricename}
+                                    style={{ color: "#fff" }}
+                                  >
+                                    {pck.title}
+                                  </div>
+                                </div>
+                                <div className="card-body">
+                                  <div
+                                    className={styles.priceTitle}
+                                    style={{ color: "#fff" }}
+                                  >
+                                    &#x20B9;{pck.amount}{" "}
+                                    <small className="text-white"> / mo</small>
+                                  </div>
+                                  <ul className="list-unstyled mt-3 mb-4">
+                                    <li
+                                      className={styles.priceDes}
+                                      style={{ color: "#fff" }}
+                                    >
+                                      {pck.description}
+                                    </li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                  </ul>
+                                  {packageID === pck.price_id ? (
+                                    <>
+                                      <button
+                                        type="submit"
+                                        // className="w-100 btn btn-lg btn-outline-primary"
+                                        className={styles.disabledButton}
+                                        onClick={() => {
+                                          setPriceID(pck.price_id);
+                                        }}
+                                        disabled
+                                      >
+                                        Your Current Plan Active
+                                      </button>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <button
+                                        type="submit"
+                                        // className="w-100 btn btn-lg btn-outline-primary"
+                                        className={styles.startedButton}
+                                        onClick={() => {
+                                          setPriceID(pck.price_id);
+                                        }}
+                                      >
+                                        Get started
+                                      </button>
+                                    </>
+                                  )}
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className={styles.priceBox}>
                             <form method="POST" onSubmit={handleSubmit}>
                               <div className="card-header">
-                                {/* <p style={{ color: "#fff" }}>
-                                  {" "}
-                                  {" "}
-                                </p> */}
-                                <div
-                                  className={styles.pricename}
-                                  style={{ color: "#fff" }}
-                                >
+                                <div className={styles.pricename}>
                                   {pck.title}
                                 </div>
                               </div>
                               <div className="card-body">
-                                <div
-                                  className={styles.priceTitle}
-                                  style={{ color: "#fff" }}
-                                >
+                                <div className={styles.priceTitle}>
                                   &#x20B9;{pck.amount}{" "}
-                                  <small className="text-white"> / mo</small>
+                                  <small className="text-muted"> / mo</small>
                                 </div>
                                 <ul className="list-unstyled mt-3 mb-4">
-                                  <li
-                                    className={styles.priceDes}
-                                    style={{ color: "#fff" }}
-                                  >
+                                  <li className={styles.priceDes}>
                                     {pck.description}
                                   </li>
                                   <li></li>
@@ -211,7 +234,7 @@ function HomePage({ data, data1 }) {
                                       }}
                                       disabled
                                     >
-                                      Get started
+                                      Your Current Plan Active
                                     </button>
                                   </>
                                 ) : (
@@ -230,60 +253,6 @@ function HomePage({ data, data1 }) {
                                 )}
                               </div>
                             </form>
-                          </div>
-                        ) : (
-                          // </div>
-                          <div>
-                            <div className={styles.priceBox}>
-                              <form method="POST" onSubmit={handleSubmit}>
-                                <div className="card-header">
-                                  <div className={styles.pricename}>
-                                    {pck.title}
-                                  </div>
-                                </div>
-                                <div className="card-body">
-                                  <div className={styles.priceTitle}>
-                                    &#x20B9;{pck.amount}{" "}
-                                    <small className="text-muted"> / mo</small>
-                                  </div>
-                                  <ul className="list-unstyled mt-3 mb-4">
-                                    <li className={styles.priceDes}>
-                                      {pck.description}
-                                    </li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                  </ul>
-                                  {/* {packageID === pck.price_id ? (
-                                <> */}
-                                  <button
-                                    type="submit"
-                                    // className="w-100 btn btn-lg btn-outline-primary"
-                                    className={styles.startedButton}
-                                    onClick={() => {
-                                      setPriceID(pck.price_id);
-                                    }}
-                                  >
-                                    Get started
-                                  </button>
-                                  {/* </> */}
-                                  {/* ) : (
-                                <> */}
-                                  {/* <button
-                                    type="submit"
-                                    // className="w-100 btn btn-lg btn-outline-primary"
-                                    className={styles.startedButton}
-                                    onClick={() => {
-                                      setPriceID(pck.price_id);
-                                    }}
-                                  >
-                                    Get started
-                                  </button> */}
-                                  {/* </>
-                              )}  */}
-                                </div>
-                              </form>
-                            </div>
                           </div>
                         )}
                       </div>
