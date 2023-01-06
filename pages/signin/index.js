@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_SAMPLE, SAMPLE_ERROR } from "../store/types";
+import { GET_SAMPLE, SAMPLE_ERROR } from "../../store/types";
 
 // import { Loader } from "../../components/loader";
 

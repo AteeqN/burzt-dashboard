@@ -6,7 +6,7 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { Loader } from "../components/loader";
 import { useDispatch, useSelector } from "react-redux";
-import { getSampleData } from "./store/actions/sampleAction";
+import { getSampleData } from "../store/actions/sampleAction";
 
 function HomePage({ data, data1 }) {
   const [loading, setLoading] = useState(false);

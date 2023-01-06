@@ -6,8 +6,8 @@ import Logo from "../public/images/burzt.png";
 import Profile from "../public/images/profile.png";
 import { Loader } from "./loader";
 import { useDispatch, useSelector } from "react-redux";
-import { getSampleData } from "../pages/store/actions/sampleAction";
-import { GET_SAMPLE, SAMPLE_ERROR } from "../pages/store/types";
+import { getSampleData } from "../store/actions/sampleAction";
+import { GET_SAMPLE, SAMPLE_ERROR } from "../store/types";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import * as customHeader from "./Header.module.css";
 
