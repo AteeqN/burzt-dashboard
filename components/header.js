@@ -39,7 +39,7 @@ function Header() {
     dispatch(setTokenState(false));
     dispatch(setTokenUser(Cookies.remove("token")));
     Cookies.remove("token");
-    // window.location.reload();
+    window.location.reload();
   };
 
   // console.log(typeof token);
