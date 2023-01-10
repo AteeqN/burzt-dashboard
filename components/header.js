@@ -15,7 +15,6 @@ import {
 // import { Loader } from "./loader";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import * as customHeader from "./Header.module.css";
-import Link from "next/link";
 
 function Header() {
   // const [loading, setLoading] = useState(false);
@@ -45,47 +44,6 @@ function Header() {
   // console.log(typeof token);
   return (
     <>
-      {/* <div className="container">
-        <ul className="nav justify-content-center">
-          <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" href="/">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" aria-current="page" href="/profile">
-              Profile
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" href="/contact">
-              Contact Us
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" href="/about">
-              About Us
-            </Link>
-          </li>
-          <li className="nav-item">
-            {flag === true ? (
-              <>
-                <form onSubmit={LogOut}>
-                  <button type="submit" className="btn btn-primary mt-1">
-                    Log Out
-                  </button>
-                </form>
-              </>
-            ) : (
-              <>
-                <Link href="#" className="nav-link"></Link>
-              </>
-            )}
-            
-          </li>
-        </ul>
-      </div> */}
-
       {/* new menu in react boostrap */}
 
       <Navbar bg="white" expand="lg">

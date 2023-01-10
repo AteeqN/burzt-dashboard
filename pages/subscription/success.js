@@ -1,19 +1,29 @@
 import React from "react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { selectTokenUser, selectTokenState } from "../../slices/counterSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Account(data) {
+  const userToken = useSelector(selectTokenUser);
+  const userState = useSelector(selectTokenState);
   console.log(data.data.message);
 
   return (
     <div className="container text-center" style={{ minHeight: 750 }}>
       <div className="row">
-        <div className="col-6" style={{ color: "green" }}>
-          {data.data.message}
-        </div>
-        <div className="col-6">
-          <Link href="/">Go Back</Link>
-        </div>
+        {userToken === 0 ? (
+          <></>
+        ) : (
+          <>
+            <div className="col-6" style={{ color: "green" }}>
+              <h1>{data.data.message}</h1>
+            </div>
+            <div className="col-6">
+              <Link href="/">Go Back</Link>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

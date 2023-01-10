@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectTokenUser,
-  selectTokenState,
-  setTokenState,
-  setTokenUser,
-} from "../../slices/counterSlice";
+import { useSelector } from "react-redux";
+import { selectTokenUser, selectTokenState } from "../../slices/counterSlice";
 import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -35,8 +30,6 @@ function Profile({ data }) {
       }
     }
   }, [data]);
-
-  console.log("subs", data);
 
   return (
     <>
