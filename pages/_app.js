@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import Layout from "../components/layout";
-import { wrapper, store } from "../store/store";
+// import { wrapper, store } from "../store/store";
+// import { Provider } from "react-redux";
+import store from "../store";
 import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }) {
@@ -13,4 +15,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

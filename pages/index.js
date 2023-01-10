@@ -2,26 +2,54 @@ import Head from "next/head";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Button, Input } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../styles/Home.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  increment,
+  decrement,
+  loadDataFromLocalStorage,
+  addToken,
+  setTokenState,
+  setTokenUser,
+  selectTokenUser,
+  selectTokenState,
+} from "../slices/counterSlice";
 import { Loader } from "../components/loader";
-import { useDispatch, useSelector } from "react-redux";
-import { getSampleData } from "../store/actions/sampleAction";
 
 function HomePage({ data, data1 }) {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [token, setToken] = useState();
   const [priceID, setPriceID] = useState();
+  const [packageID, setPackageID] = useState();
+  const userToken = useSelector(selectTokenUser);
+
+  // const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const sampleListData = useSelector((state) => state.sampleData);
   // const { sample } = sampleListData;
-  const [packageID, setPackageID] = useState();
-  // console.log("redux", sample);
+
+  // console.log("redux", JSON.stringify(sample));
+  // let newToken = sample;
+  // console.log("new", count);
+
   useEffect(() => {
+    // setLoading(true);
     setPackageID(data1.price_id);
     setToken(Cookies.get("token"));
-    dispatch(getSampleData());
-  }, [dispatch, data1]);
+    // if (userToken === null) {
+    //   const jsonItems = localStorage.getItem("token");
+    //   const localItems = jsonItems ? jsonItems : null;
+    //   console.log("userToken", localItems);
+    //   if (localItems > 0) {
+    //     dispatch(setTokenState(true));
+    //     dispatch(setTokenUser(localItems));
+    //   }
+    // }
+    // dispatch(getSampleToken());
+  }, [data1]);
 
   // console.log("package", data);
   // console.log("subscription", data1.price_id);
@@ -39,6 +67,11 @@ function HomePage({ data, data1 }) {
   //   console.log(data);
   // }, []);
   // Handles the submit event on form submit.
+  // const handleToken = (event) => {
+  //   event.preventDefault();
+  //   dispatch(setTokenState(true));
+  //   dispatch(setTokenUser(data));
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -94,8 +127,14 @@ function HomePage({ data, data1 }) {
             Welcome to <Link href="#">Burzt Dashboard!</Link>
             {/* <h1>{process.env.API_BASE_URL}</h1> */}
           </h1>
-          {/* <h3>{JSON.stringify(sample)}</h3> */}
-          {!token ? (
+          {/* <h3>the value count is {count}</h3> */}
+
+          {/* <form method="POST" onSubmit={handleToken}>
+            <Input />
+            <Button></Button>
+          </form> */}
+
+          {!userToken ? (
             <div className="container text-center">
               {/* <Link
                 href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
@@ -265,9 +304,10 @@ function HomePage({ data, data1 }) {
               </div>
             </>
           )}
+          {/* <Token /> */}
         </main>
       </div>
-      {loading ? <Loader /> : null}
+      {/* {loading ? <Loader /> : null} */}
     </>
   );
 }

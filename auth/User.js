@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 
 export default function User() {
   var token = Cookies.get("token");
+  // let token = localStorage.getItem("token");
   // console.log(token);
   if (!token) {
     useEffect(() => {

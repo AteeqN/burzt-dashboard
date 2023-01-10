@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { setTokenState, setTokenUser } from "../../slices/counterSlice";
 import Cookies from "js-cookie";
-import { useDispatch, useSelector } from "react-redux";
-import { GET_SAMPLE, SAMPLE_ERROR } from "../../store/types";
 
 // import { Loader } from "../../components/loader";
 
@@ -12,6 +12,26 @@ function SignIn({ data }) {
   // const { user, loading } = useUser();
   const dispatch = useDispatch();
   const router = useRouter();
+
+  // console.log("data", data);
+
+  try {
+    useEffect(() => {
+      if (router.pathname === "/signin") {
+        //     // console.log("route", router);
+        // localStorage.setItem("token", data);
+        Cookies.set("token", data, { expires: 7 })?.value;
+        dispatch(setTokenState(true));
+        dispatch(setTokenUser(data));
+        // dispatch(setTokenUser(localStorage.setItem("token", "token123")));
+        router.push("/");
+        // handleToken();
+        //     // router.reload(router.pathname);
+      }
+    }, []);
+  } catch (error) {
+    console.log(error);
+  }
   // const router = useRouter();
   // const [loading, setLoading] = useState(false);
 
@@ -30,29 +50,30 @@ function SignIn({ data }) {
   //     });
   //   }
   // };
-  useEffect(() => {
-    try {
-      dispatch({
-        type: GET_SAMPLE,
-        payload: Cookies.set("token", data, {
-          expires: 7,
-          path: "/",
-        }),
-        // payload: [1, 2, 3, 4, 5, 6],
-      });
-      if (router.pathname === "/signin") {
-        //     // console.log("route", router);
-        router.push("/");
-        //     // router.reload(router.pathname);
-      }
-    } catch (error) {
-      dispatch({
-        type: SAMPLE_ERROR,
-        payload: "error message",
-      });
-    }
-    // Cookies.set("token", data, { expires: 7, path: "/" });
-  }, [dispatch, data]);
+
+  // useEffect(() => {
+  //   try {
+  //     dispatch({
+  //       type: GET_SAMPLE,
+  //       payload: Cookies.set("token", data, {
+  //         expires: 7,
+  //         path: "/",
+  //       }),
+  //       // payload: [1, 2, 3, 4, 5, 6],
+  //     });
+  //     if (router.pathname === "/signin") {
+  //       //     // console.log("route", router);
+  //       router.push("/");
+  //       //     // router.reload(router.pathname);
+  //     }
+  //   } catch (error) {
+  //     dispatch({
+  //       type: SAMPLE_ERROR,
+  //       payload: "error message",
+  //     });
+  //   }
+  //   // Cookies.set("token", data, { expires: 7, path: "/" });
+  // }, [dispatch, data]);
 
   // useEffect(() => {
   //   Cookies.set("token", data, { expires: 7, path: "/" });
