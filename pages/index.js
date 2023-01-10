@@ -101,7 +101,7 @@ function HomePage({ data, data1 }) {
     console.log(result);
     if (response.status == 200) {
       // console.log(result);
-      setLoading(true);
+      // setLoading(true);
       window.location.replace(result.url);
     } else if (response.status == 403) {
       console.log(result.error);
