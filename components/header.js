@@ -65,7 +65,7 @@ function Header() {
               {!userToken ? (
                 <>
                   <Nav.Link
-                    href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
+                    href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fapi.burzt.io%2Fsign-in&client_id=2214326541360.4778511067028"
                     // href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2F6ff3-206-84-189-12.in.ngrok.io%2Fsign-in&client_id=3608320528308.4328768473665"
                     className={customHeader.button}
                   >
@@ -142,7 +142,7 @@ function Header() {
               {/* {!token ? (
                 <>
                   <Nav.Link
-                    href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fburzt.passwise.app%2Fsign-in&client_id=2214326541360.4420644231987"
+                    href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fapi.burzt.io%2Fsign-in&client_id=2214326541360.4778511067028"
                     href="https://slack.com/openid/connect/authorize?scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2F6ff3-206-84-189-12.in.ngrok.io%2Fsign-in&client_id=3608320528308.4328768473665"
                     className={customHeader.button}
                   >
