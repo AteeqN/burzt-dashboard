@@ -77,7 +77,7 @@ function HomePage({ data, data1 }) {
     event.preventDefault();
 
     // console.log(priceID);
-    const apiUrl = process.env.API_URL;
+    const apiUrl = process.env.API_BASE_URL;
 
     const data = {
       price_id: priceID,
@@ -317,7 +317,7 @@ export async function getServerSideProps(context) {
   const { cookies } = req;
 
   const token = cookies.token;
-  const apiUrl = process.env.API_URL;
+  const apiUrl = process.env.API_BASE_URL;
 
   const endpoint = `${apiUrl}packages`;
   // console.log(endpoint);
